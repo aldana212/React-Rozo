@@ -1,11 +1,9 @@
 import React from 'react'
-import '../App.css';
 
-
-export default function home() {
+export const Prueba = () => {
   return (
     <div>
-    
+    prueba
     </div>
   )
 }
