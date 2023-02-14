@@ -69,7 +69,8 @@
 }
 
 .button {
-    padding: 13px 30px;
+    padding: 17px 40px;
+    text-align: center;
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(3px);

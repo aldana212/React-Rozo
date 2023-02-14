@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 220px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container h2,
+input,
+button {
+    margin: 5px;
+}
+
+.container input {
+    font-weight: 500;
+    font-size: .8vw;
+    color: #fff;
+    background-color: rgb(28, 28, 30);
+    box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    padding-left: 12px;
+    width: 290px;
+    height: 50px;
+    transition: .4s;
+}
+
+.container input:hover {
+    box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+}
+
+.container input:focus {
+    box-shadow: 0 0 0 .15vw #fff;
+}
+
+.container button {
+    position: relative;
+    display: inline-block;
+    margin: 15px;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0  #2b6ef5fb;
+}
+
+.container button:hover {
+    color: white;
+    box-shadow: inset 0 -100px 0 0  #1e4eaffb;
+}
+
+.container button:active {
+    transform: scale(0.9);
+}

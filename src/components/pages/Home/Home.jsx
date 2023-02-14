@@ -1,10 +1,10 @@
 import React from 'react'
-import { HeaderHome } from '../../layouts/HeaderHome/HeaderHome'
+import Style from './Home.module.css'
 
 export const Home = () => {
     return (
-        <div>
-            <HeaderHome />
-        </div>
+        <section className={Style.section}>
+            <h1>Bienvenidos....</h1>
+        </section>
     )
 }

@@ -4,8 +4,8 @@ import Style from './NavBarHome.module.css';
 
 const Items = [
   { title: "Home", url: "/" }
-  , { title: "Services", url: "/services" },
-  { title: "FAQ", url: "/FAQ" }
+  ,{ title: "Couter", url: "/Couter" },
+  { title: "greet", url: "/Hello" }
 ];
 
 
@@ -22,7 +22,6 @@ export const NavBarHome = () => {
         }
       </ul>
       <button className={Style.button}>Sing</button>
-      {/* <Link className={Style.btn}>hola</Link> */}
     </nav>
   )
 }

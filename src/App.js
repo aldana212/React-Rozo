@@ -1,16 +1,19 @@
-// import Home from './components/pages/home';
 // import Greattings from './components/iu/greattings/Greattings';
 import {Routes, Route} from 'react-router-dom';
 import { Home } from './components/pages/Home/Home';
-import { Prueba } from './components/pages/Home/Prueba';
+import { Couter } from './components/pages/Couter/Couter';
+import { InputHello } from './components/pages/InputHello/InputHello';
+import { HeaderHome } from './components/layouts/HeaderHome/HeaderHome'
+
 
 function App() {
   return (
     <div>
+      <HeaderHome />
       <Routes>
       <Route path='/' element={<Home />}/>
-      <Route path='/Services' element={<Prueba />}/>
-      <Route path='/FAQ' element={<Prueba />}/>
+      <Route path='/Couter' element={<Couter />}/>
+      <Route path='/Hello' element={<InputHello />}/>
       </Routes>
     </div>
   );
