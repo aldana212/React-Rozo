@@ -5,7 +5,8 @@ import Style from './NavBarHome.module.css';
 const Items = [
   { title: "Home", url: "/" }
   ,{ title: "Couter", url: "/Couter" },
-  { title: "greet", url: "/Hello" }
+  { title: "greet", url: "/Hello" },
+  { title: "ChangeColor", url: "/ChangesColor" }
 ];
 
 
