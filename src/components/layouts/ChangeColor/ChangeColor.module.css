@@ -1,0 +1,17 @@
+.content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content h1{
+    margin-bottom: 12px;
+}
+
+.object{
+    padding: 89px 10rem;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.849);
+    box-shadow: 0 8px 32px rgba(16, 16, 16, 0.37);
+}
+
