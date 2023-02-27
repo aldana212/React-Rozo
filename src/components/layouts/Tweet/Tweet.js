@@ -1,65 +1,90 @@
 
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Style from "./tweet.module.css";
 
 export const Tweet = () => {
 
-    const [values, setValues] = useState({
-        name: '',
-        textArea: ''
+  const [values, setValues] = useState({
+    name: '',
+    textArea: ''
+  })
+
+  const handleInput = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      [name]: value
     })
+  }
 
-    const handleInput  = (e) => {
-     const { name, value } = e.target
+  const [error, setError] = useState(false);
 
-     setValues({
-        ...values,
-        [name]: value
-     })
+
+  // lo que se guarda es un arreglo
+  const [resgistro, setRegistro] = useState([])
+
+  const [text, setText] = useState('')
+  const [mostraText, setMostraText] = useState([])
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+
+  const handlePuclicar = () => {
+    console.log(values.textArea.length);
+    if(values.name === '' && values.textArea === ''){
+      setIsButtonDisabled(true)
+      setError(true)
+    }else if(values.textArea.length > 300){
+      setError(true)
+    }else{
+      setText(values)
+      // ... register para hacer una copia del estado(todo su contenido) mas los nuevos elementos a agregar al estado
+      setRegistro([...resgistro, values])
+      setError(false)
     }
+  }
 
-    const [text, setText] = useState('')
-    const [mostraText, setmostraText] = useState('')
+  // solo funcionara cuando halla un cambio en el estado register
+  useEffect(() => {
+      localStorage.setItem('resgistro', JSON.stringify(resgistro))
+  }, [resgistro])
 
-
-    const handlePuclicar = (e) =>{
-        setText(values)
-        console.log("hola");
-        console.log(text.name);
-      localStorage.setItem(text.name, JSON.stringify(text))
-      if(text.length > 0){
-        console.log("hola");
-      }
-
-    }
-
-    const handleMostrar = () =>{
-        let Text = {...localStorage}
-        // let Text = Object.keys(localStorage).map(key =>JSON.parse(localStorage.getItem(key)))
-        console.log(Text);
-        // setmostraText(Text)
-    }
+  const handleMostrar = () => {
+    let storedData = localStorage.getItem('resgistro')
+      setMostraText(JSON.parse(storedData))
+  }
 
   return (
     <div className={Style.container}>
       <div className={Style.tweet}>
-        <h2></h2>
-        <input type='text' name='name' onChange={handleInput} value={values.name}></input>
-        <textarea name='textArea' className='' onChange={handleInput} value={values.textArea}></textarea>
-        <p>{300}</p>
-        <button onClick={handlePuclicar}>Publicar</button>
-        <button onClick={handleMostrar}>Mostrar</button>
+        <div className={Style.tweetContent}>
+          <h2>Tweet</h2>
+          <input type="text" className={Style.input} name="name" placeholder="Name..." onChange={handleInput} value={values.name} />
+          <textarea name='textArea' onChange={handleInput} value={values.textArea}></textarea>
+          <p>{300 - values.textArea.length}</p>
+          {error &&
+            <p>error</p>
+          }
+          <button onClick={handlePuclicar} disabled={isButtonDisabled}>Publicar</button>
+          <button onClick={handleMostrar}>Mostrar</button>
+        </div>
 
-        <div className='content_text'>
-           <p></p>
+        <div className={Style.tweetContent_2}>
+          <div className={Style.conte}>
+            <h2>{text.name}</h2>
+            <p>{text.textArea}</p>
+          </div>
         </div>
       </div>
-      <div className={Style.content_tweet}>
-           <div className='info-tweet'>
-            <h2>aqui veras tus tweet</h2>
-            <p>{mostraText}</p>
-           </div>
-      </div>
+
+        <div className={Style.comments}>
+          <h2 className={Style.title}>Comentarios tweet</h2>
+          {mostraText.map((mostrar) => (
+            <div className={Style.comments_Content}>
+              <h2>{mostrar.name}</h2>
+              <p>{mostrar.textArea}</p>
+            </div>
+          ))}
+        </div>
     </div>
   )
 }
