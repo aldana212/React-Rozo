@@ -10,6 +10,7 @@
     backdrop-filter: blur(11.0px);
     margin-top: 8px;
     border-radius: 1em;
+    z-index: 111;
 }
 
 .h2 {
@@ -19,8 +20,7 @@
 .menu {
     display: flex;
     width: 35%;
-    justify-content: space-around;
-
+    justify-content: space-evenly;
 }
 
 .menu a {
@@ -29,6 +29,7 @@
     text-transform: uppercase;
     text-decoration: none;
     padding: 1em 2.0em;
+    margin: 2px;
     display: inline-block;
     border-radius: 6em;
     transition: all .2s;
@@ -86,3 +87,92 @@
     color: #000;
     transition: ease-in 0.4s;
 }
+
+.menu_icon{
+    display: none;
+}
+
+/*Tablet*/
+/*Portrait*/
+@media (min-width: 576px) and (max-width: 991px) {
+    .menu{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, .25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, .37);
+        backdrop-filter: blur(4px);
+        border-radius: 13px;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0%;
+        align-items: stretch;
+        padding:  80px 0 30px 0;
+        margin: 0;
+    }
+
+    .menu a {
+        text-align: center;
+        display: block;
+        width: 100%;
+        padding: 2rem 0;
+        color: #222;
+        background-color: rgba(255, 255, 255, .25);
+    }
+}
+
+/*landscape*/
+@media (min-width: 991px) and (max-width: 1163px)and (orientation:landscape) {
+    .menu a {
+        padding: 10px 19px;
+        margin: 2px;
+        color: #222;
+        background-color: rgba(255, 255, 255, .25);
+    }
+}
+/*fin tablet*/
+
+/*movil*/
+@media (max-width: 575.98px)and (orientation:portrait) {
+    
+    .menu{
+        display: none;
+    }
+    
+    .menu11{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, .25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, .37);
+        backdrop-filter: blur(4px);
+        border-radius: 13px;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0%;
+        align-items: stretch;
+        padding:  80px 0 30px 0;
+        margin: 0;
+    }
+
+    .menu11 a {
+        text-align: center;
+        display: block;
+        width: 100%;
+        padding: 2rem 0;
+        color: #222;
+        background-color: rgba(255, 255, 255, .25);
+    }
+
+    .menu_icon{
+        display: block;
+        z-index: 1111;
+    }
+ }
+/*fin movil*/
