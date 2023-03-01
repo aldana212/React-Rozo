@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Alert from 'react-bootstrap/Alert';
 import Style from "./tweet.module.css";
 import { Alerts } from '../../iu/Alerts/Alerts';
 
@@ -44,12 +43,13 @@ export const Tweet = () => {
   // y si sobre pasa de los caracteres de lo contrario manda la info
   const handlePuclicar = () => {
     console.log(values.textArea.length);
-    if(values.name === '' && values.textArea === ''){
-      setIsButtonDisabled(true)
+    if (values.name === '' || values.textArea === '') {
       setError(true)
-    }else if(values.textArea.length > 300){
+      setMesage("Llega los campos")
+    } else if (values.textArea.length > 300) {
       setError(true)
-    }else{
+      setMesage("Limite de caracteres")
+    } else {
       setText(values)
       // ... register para hacer una copia del estado(todo su contenido) mas los nuevos elementos a agregar al estado
       setRegistro([...resgistro, values])
@@ -72,37 +72,45 @@ export const Tweet = () => {
   }
 
   return (
-    <div className={Style.container}>
-      <div className={Style.tweet}>
-        <div className={Style.tweetContent}>
-          <h2>Tweet</h2>
-          <input type="text" className={Style.input} name="name" placeholder="Name..." onChange={handleInput} value={values.name} />
-          <textarea name='textArea' onChange={handleInput} value={values.textArea}></textarea>
-          <p>{300 - values.textArea.length}</p>
-          {error &&
-            <p>error</p>
-          }
-          <button onClick={handlePuclicar} disabled={isButtonDisabled}>Publicar</button>
-          <button onClick={handleMostrar}>Mostrar</button>
-        </div>
+    <>
+      <div className={Style.container}>
+        <div className={Style.tweet}>
+          <div className={Style.tweetContent}>
+            <h2>Tweet</h2>
+            <input type="text" className={Style.input} name="name" placeholder="Name..." onChange={handleInput} value={values.name} />
+            <textarea name='textArea' onChange={handleInput} value={values.textArea}></textarea>
+            <p>{limit} - {limit - values.textArea.length}</p>
+            <button onClick={handlePuclicar}>Publicar</button>
+            <button onClick={handleMostrar}>Mostrar</button>
+          </div>
 
-        <div className={Style.tweetContent_2}>
-          <div className={Style.conte}>
-            <h2>{text.name}</h2>
-            <p>{text.textArea}</p>
+          <div className={Style.tweetContent_2}>
+            <div className={Style.conte}>
+              <h2>{text.name}</h2>
+              <p>{text.textArea}</p>
+            </div>
           </div>
         </div>
-      </div>
 
-        <div className={Style.comments}>
-          <h2 className={Style.title}>Comentarios tweet</h2>
-          {mostraText.map((mostrar) => (
-            <div className={Style.comments_Content}>
-              <h2>{mostrar.name}</h2>
-              <p>{mostrar.textArea}</p>
-            </div>
-          ))}
-        </div>
-    </div>
+        {mostraText ?
+          <div className={Style.comments}>
+            <h2 className={Style.title}>Comentarios tweet</h2>
+            {mostraText.map((mostrar) => (
+              <div className={Style.comments_Content}>
+                <h2>{mostrar.name}</h2>
+                <p>{mostrar.textArea}</p>
+              </div>
+            ))}
+          </div>
+          :
+          <div className={Style.comments}>
+            <img className={Style.image} src={imgUrl} />
+          </div>
+        }
+      </div>
+      <Alerts error={error}
+        setError={setError}
+        message={message} />
+    </>
   )
 }

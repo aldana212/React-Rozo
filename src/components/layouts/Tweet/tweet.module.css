@@ -125,7 +125,8 @@
     position: relative;
     width: 250px;
     height: 250px;
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .comments .image img{
