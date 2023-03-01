@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Style from "./tweet.module.css";
-import { Alerts } from '../../iu/Alerts/Alerts';
+import { toast } from 'react-toastify';
+
 
 export const Tweet = () => {
 
@@ -24,12 +25,6 @@ export const Tweet = () => {
 
   }
 
-  // mostrar la ventana modal
-  const [error, setError] = useState(false);
-
-  // mandar mensage de error a la modal
-  const [message, setMesage] = useState('')
-
   // guarda el estado values con la info en un arreglo
   const [resgistro, setRegistro] = useState([])
 
@@ -44,11 +39,27 @@ export const Tweet = () => {
   const handlePuclicar = () => {
     console.log(values.textArea.length);
     if (values.name === '' || values.textArea === '') {
-      setError(true)
-      setMesage("Llega los campos")
-    } else if (values.textArea.length > 300) {
-      setError(true)
-      setMesage("Limite de caracteres")
+      toast.error("Llega los campos",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    } else if (values.textArea.length > 255) {
+      toast.error("Limite de caracteres",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
     } else {
       setText(values)
       // ... register para hacer una copia del estado(todo su contenido) mas los nuevos elementos a agregar al estado
@@ -92,7 +103,7 @@ export const Tweet = () => {
           </div>
         </div>
 
-        {mostraText ?
+        {mostraText.length ?
           <div className={Style.comments}>
             <h2 className={Style.title}>Comentarios tweet</h2>
             {mostraText.map((mostrar) => (
@@ -108,9 +119,6 @@ export const Tweet = () => {
           </div>
         }
       </div>
-      <Alerts error={error}
-        setError={setError}
-        message={message} />
     </>
   )
 }

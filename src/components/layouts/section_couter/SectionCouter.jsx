@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Style from './SectionCouter.module.css'
+import ScrollReveal from 'scrollreveal'
+
+
+
 export const SectionCouter = () => {
 
 
@@ -27,6 +31,18 @@ export const SectionCouter = () => {
   useEffect(() => {
     Couter > 9 ? setColor(RandomColor) : setColor('Black')
   }, [Couter])
+
+  useEffect(() => {
+    const reveal1 = ScrollReveal({
+      delay: 500,
+      duration: 1000,
+      distance: '50px',
+      easing: 'ease-out',
+      origin: 'right',
+      reset: true,
+    });
+    reveal1.reveal(`.${Style.title},#${Style.couter},.${Style.button}`)
+  }, []);
 
   return (
     <div className={Style.container}>

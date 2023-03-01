@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Style from './NavBarHome.module.css';
 import { FaBars } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
-
+import ScrollReveal from 'scrollreveal'
 
 const Items = [
   { title: "Home", url: "/" }
@@ -17,6 +17,18 @@ const Items = [
 export const NavBarHome = () => {
 
   const [Mobile, setMobile] = useState(false)
+
+  useEffect(() => {
+    const reveal1 = ScrollReveal({
+      delay: 500,
+      duration: 1000,
+      distance: '50px',
+      easing: 'ease-out',
+      origin: 'right',
+      reset: true,
+    });
+    reveal1.reveal(`.${Style.navbar}`)
+  }, []);
 
   return (
     <nav className={Style.navbar}>

@@ -15,6 +15,15 @@ export const HomeLa = () => {
             reset: true,
           });
           reveal1.reveal(`.${Style.content_text}`)
+          const reveal2 = ScrollReveal({
+            delay: 500,
+            duration: 1000,
+            distance: '50px',
+            easing: 'ease-out',
+            origin: 'top',
+            reset: true,
+          });
+          reveal2.reveal(`.${Style.image}`)
     }, []);
 
     return (
